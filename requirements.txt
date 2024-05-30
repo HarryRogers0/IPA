@@ -6,3 +6,4 @@ scikit-learn
 skfolio
 streamlit
 yfinance
+matplotlib
