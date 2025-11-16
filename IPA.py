@@ -17,7 +17,7 @@ def downloadData(Tickers, start):
 
     for ticker in Tickers:
         ticker_data = yf.download(ticker, start=start)
-        data[ticker] = prices_to_returns(pd.DataFrame(ticker_data['Adj Close']))
+        data[ticker] = prices_to_returns(pd.DataFrame(ticker_data['Close']))
         if ticker_data.empty:
             Failed_Downloads.append(ticker)
             
@@ -26,7 +26,7 @@ def downloadData(Tickers, start):
     return data
 
 def downloadBench(benchmarkTicker):
-    benchmark_data = prices_to_returns(pd.DataFrame(yf.download(benchmarkTicker, start = start)['Adj Close']))
+    benchmark_data = prices_to_returns(pd.DataFrame(yf.download(benchmarkTicker, start = start)['Close']))
     return benchmark_data
 
 
@@ -189,7 +189,7 @@ if Portfolio_Weights is not None:
 
     match benchmark_choice:
         case "Custom Ticker": # 'Equally Weighted' model applied to one asset. This ensures consistency for outputs across models.
-            benchmark_data =  benchmark_data.rename(columns={'Adj Close' : benchmarkTicker})
+            benchmark_data =  benchmark_data.rename(columns={'Close' : benchmarkTicker})
             X_bench_train, X_bench_test = train_test_split(benchmark_data, test_size = 0.33, shuffle = False)        
             benchmark = EqualWeighted(portfolio_params=dict(name="Custom Benchmark", risk_free_rate = rfr))
             benchmark.fit(X_bench_train)
