@@ -5,7 +5,6 @@ import numpy as np
 import streamlit as st 
 import datetime
 import time
-import altair as alt
 from plotly.io import show
 from skfolio import Portfolio, RiskMeasure, Population, PerfMeasure,RatioMeasure, measures
 from skfolio.preprocessing import prices_to_returns
@@ -300,3 +299,4 @@ if Portfolio_Weights is not None:
         
 
     
+
